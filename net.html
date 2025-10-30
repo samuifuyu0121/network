@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>個人作品展示</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <!-- ░░ 固定導覽列 ░░ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <div class="brand">標題</div>
+      <nav class="nav">
+        <a class="nav-link" href="#about">關於</a>
+        <a class="nav-link" href="#works">作品</a>
+        <a class="nav-link" href="#flow">流程</a>
+        <a class="nav-link" href="#qa">Q&A</a>
+        <a class="nav-link" href="#contact">聯絡</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ░░ 頂部橫幅 ░░ -->
+  <section class="banner">
+    <div class="container">
+      <div class="ph ph-banner" aria-label="頂部橫幅"></div>
+    </div>
+  </section>
+
+  <!-- ░░ 關於 ░░ -->
+  <section id="about" class="section">
+    <div class="container about-grid">
+      <div class="about-left">
+        <figure class="ph ph-hero"></figure>
+      </div>
+      <div class="about-right">
+        <article class="card">
+          <h3 class="card-title">人名</h3>
+          <div class="card-body">
+            <p>嗨，我是贛文，擁有多元背景，曾經就讀資訊工程系，一路到數學博士後...</p>
+          </div>
+        </article>
+        <article class="card">
+          <h3 class="card-title">價目表</h3>
+          <div class="card-body">
+            <p>基本案、商用授權、急件、修改次數等資訊...</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 作品展示（共用展示區版本） ░░ -->
+  <section class="works section" id="works">
+    <div class="container">
+      <h2 class="section-heading">作品展示</h2>
+
+      <!-- 三個按鈕 -->
+      <div class="tabbar">
+        <button class="tab-btn active" data-target="illust">插圖</button>
+        <button class="tab-btn" data-target="prop">正比</button>
+        <button class="tab-btn" data-target="design">設計</button>
+      </div>
+
+      <!-- 共用展示區（只留這一個 panel） -->
+      <div class="panel show" id="panel-main">
+        <div class="thumbs">
+          <figure class="ph ph-sq"></figure>
+          <figure class="ph ph-sq"></figure>
+        </div>
+
+        <figure class="ph ph-main"></figure>
+
+        <button class="carousel-arrow left">‹</button>
+        <button class="carousel-arrow right">›</button>
+
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 流程 ░░ -->
+  <section id="flow" class="section flow">
+    <div class="container">
+      <div class="flow-title">流程</div>
+      <div class="flow-grid">
+        <article class="flow-card"><h3>排練</h3><ul><li>步驟說明一</li></ul></article>
+        <article class="flow-card"><h3>定金</h3><ul><li>步驟說明一</li></ul></article>
+        <article class="flow-card"><h3>首圖挑整</h3><ul><li>步驟說明一</li></ul></article>
+        <article class="flow-card"><h3>成圖確認</h3><ul><li>步驟說明一</li></ul></article>
+        <article class="flow-card"><h3>尾款</h3><ul><li>步驟說明一</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ Q&A ░░ -->
+  <section id="qa" class="section qa">
+    <div class="container qa-grid">
+      <div class="qa-badge">Q&A</div>
+      <div class="qa-list">
+        <div class="qa-item">
+          <button class="qa-q">第一個問題</button>
+          <div class="qa-a">答案內容放這裡。</div>
+        </div>
+        <div class="qa-item">
+          <button class="qa-q">第二個問題</button>
+          <div class="qa-a">答案內容放這裡。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 聯絡 ░░ -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="contact-badge">聯絡</div>
+      <div class="contact-list">
+        <article class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-body"><h4>Email</h4><p>example@mail.com</p></div>
+        </article>
+        <article class="contact-card">
+          <div class="contact-icon">📱</div>
+          <div class="contact-body"><h4>Instagram</h4><p>@youraccount</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ 黑色頁尾 ░░ -->
+  <footer class="site-footer">
+    <div class="container">© 2025 版權所有</div>
+  </footer>
+
+</body>
+</html>
