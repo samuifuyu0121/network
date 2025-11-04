@@ -169,3 +169,26 @@ document.addEventListener('keydown', (e) => {
     qaItems.forEach(i => i.classList.remove('open'));
   }
 });
+// ===== 0) 點品牌回到最上面 =====
+const brand = document.querySelector('.brand');
+if (brand) {
+  // 滑順回頂端
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  brand.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToTop();
+  });
+
+  // 鍵盤可達性（Enter / Space）
+  brand.setAttribute('role', 'button');
+  brand.setAttribute('tabindex', '0');
+  brand.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      scrollToTop();
+    }
+  });
+}

@@ -13,13 +13,13 @@
   <!-- ░░ 固定導覽列 ░░ -->
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
-      <div class="brand">標題</div>
+      <div class="brand">委託網頁展示</div>
       <nav class="nav">
         <a class="nav-link" href="#about">關於</a>
         <a class="nav-link" href="#works">作品</a>
         <a class="nav-link" href="#flow">流程</a>
         <a class="nav-link" href="#qa">Q&A</a>
-        <a class="nav-link" href="#contact">聯絡</a>
+        <a class="nav-link" href="#contact">相關網站</a>
       </nav>
     </div>
   </header>
@@ -39,15 +39,17 @@
       </div>
       <div class="about-right">
         <article class="card">
-          <h3 class="card-title">人名</h3>
+          <h3 class="card-title">郭姵誼/齊悦/簡廷伃</h3>
           <div class="card-body">
-            <p>嗨，我是贛文，擁有多元背景，曾經就讀資訊工程系，一路到數學博士後...</p>
+            <p>擅長處理日式插圖/正比/文字設計
+            </p>
           </div>
         </article>
         <article class="card">
           <h3 class="card-title">價目表</h3>
           <div class="card-body">
-            <p>基本案、商用授權、急件、修改次數等資訊...</p>
+            <p>插圖:800up/正比:3000up/文字設計:1500up</p>
+            <p>商用價格*3倍/急件*2倍up(視情況調整)</p>
           </div>
         </article>
       </div>
@@ -55,48 +57,51 @@
   </section>
 
   <!-- ░░ 作品展示（共用展示區版本） ░░ -->
-  <section class="works section" id="works">
-    <div class="container">
-      <h2 class="section-heading">作品展示</h2>
+<section class="works section" id="works">
+  <div class="container">
+    <h2 class="section-heading">作品展示</h2>
 
-      <!-- 三個按鈕 -->
-      <div class="tabbar">
-        <button class="tab-btn active" data-target="illust">插圖</button>
-        <button class="tab-btn" data-target="prop">正比</button>
-        <button class="tab-btn" data-target="design">設計</button>
+    <!-- 三個按鈕 -->
+    <div class="tabbar">
+      <button class="tab-btn active" data-target="illust">插圖</button>
+      <button class="tab-btn" data-target="prop">正比</button>
+      <button class="tab-btn" data-target="design">設計</button>
+    </div>
+
+    <!-- 共用展示區（只留這一個 panel） -->
+    <div class="panel show" id="panel-main">
+      <div class="thumbs">
+        <figure class="ph ph-sq"></figure>
+        <figure class="ph ph-sq"></figure>
       </div>
 
-      <!-- 共用展示區（只留這一個 panel） -->
-      <div class="panel show" id="panel-main">
-        <div class="thumbs">
-          <figure class="ph ph-sq"></figure>
-          <figure class="ph ph-sq"></figure>
-        </div>
+      <!-- 主圖容器：按鈕圖 -->
+      <figure class="ph ph-main">
+          <img src="S__18006040.jpg" alt="pic" />
+      </figure>
 
-        <figure class="ph ph-main"></figure>
+      <button class="carousel-arrow left">‹</button>
+      <button class="carousel-arrow right">›</button>
 
-        <button class="carousel-arrow left">‹</button>
-        <button class="carousel-arrow right">›</button>
-
-        <div class="dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ░░ 流程 ░░ -->
   <section id="flow" class="section flow">
     <div class="container">
       <div class="flow-title">流程</div>
       <div class="flow-grid">
-        <article class="flow-card"><h3>排練</h3><ul><li>步驟說明一</li></ul></article>
-        <article class="flow-card"><h3>定金</h3><ul><li>步驟說明一</li></ul></article>
-        <article class="flow-card"><h3>首圖挑整</h3><ul><li>步驟說明一</li></ul></article>
-        <article class="flow-card"><h3>成圖確認</h3><ul><li>步驟說明一</li></ul></article>
-        <article class="flow-card"><h3>尾款</h3><ul><li>步驟說明一</li></ul></article>
+        <article class="flow-card"><h3>排單</h3><ul><li>填寫排單表</li></ul></article>
+        <article class="flow-card"><h3>定金</h3><ul><li>繪師聯繫匯款</li></ul> <ul><li>確認委託內容</li></ul></article>
+        <article class="flow-card"><h3>草圖調整</h3><ul><li>三次修改機會</li></ul> <ul><li>再度修改每次+200台幣</li></ul></article>
+        <article class="flow-card"><h3>成圖確認</h3><ul><li>三次修改機會</li></ul> <ul><li>再度修改每次+200台幣</li></ul> <ul><li>大改每次額外收+300台幣</li></ul> </article>
+        <article class="flow-card"><h3>尾款</h3> <ul><li>繪師提供水印版本做確認</li></ul> <ul><li>付款後提供無水印版</li></ul></article>
       </div>
     </div>
   </section>
@@ -107,12 +112,12 @@
       <div class="qa-badge">Q&A</div>
       <div class="qa-list">
         <div class="qa-item">
-          <button class="qa-q">第一個問題</button>
-          <div class="qa-a">答案內容放這裡。</div>
+          <button class="qa-q">排單表在哪裡</button>
+          <div class="qa-a">在下方相關網站處喔!</div>
         </div>
         <div class="qa-item">
-          <button class="qa-q">第二個問題</button>
-          <div class="qa-a">答案內容放這裡。</div>
+          <button class="qa-q">我的圖什麼時候會畫好</button>
+          <div class="qa-a">看您的排單月份喔!詳情請洽您的繪師!</div>
         </div>
       </div>
     </div>

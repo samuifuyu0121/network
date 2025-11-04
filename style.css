@@ -43,7 +43,7 @@ body{
   margin:0 auto; padding:0 24px;
 }
 .header-inner{ display:flex; align-items:center; justify-content:space-between }
-.brand{ font-weight:800; letter-spacing:.12em } /* 網站LOGO或名稱字型設定 */
+.brand{ font-weight:800;font-size:1.4em; letter-spacing:.12em;cursor: pointer; user-select: none;} /* 網站LOGO或名稱字型設定 */
 
 .nav{ display:flex; gap:18px }
 .nav-link{
@@ -52,7 +52,7 @@ body{
   font-weight:700;
   transition:background .15s ease,color .15s ease,transform .05s;
 }
-.nav-link:hover{ background:#f6f6f6 } /* 滑過導覽按鈕的顏色 */
+.nav-link:hover{ background:#e9e9e9} /* 滑過導覽按鈕的顏色 */
 .nav-link.active{
   background:var(--tab-active);   /* 被選中時的背景顏色 */
   color:var(--tab-ink-active);    /* 被選中文字顏色 */
@@ -82,14 +82,31 @@ body{
   width:100vw; /* 橫跨整個螢幕寬度 */
   position:relative;
   left:50%; right:50%;
-  margin-left:-50vw; margin-right:-50vw; /* 去掉 container 邊界 */
+  margin-left:-50vw; margin-right:-50vw; margin-top: 67px;/* 去掉 container 邊界 */
 }
 
-.ph-banner{
-  width:100%;
-  height:420px;
-  background:url("images/banner.jpg") center/cover no-repeat;  /* ← ✅ Banner 圖片改這裡 */
-  border-radius:0; border:none;
+.ph-banner {
+  width: 100%;
+  height: 210px;
+  border-radius: 0;
+  border: none;
+
+  /* 🎨 先放漸層、再放圖片 → 兩張背景重疊 */
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 80%, rgba(0,0,0,0) 100%), 
+    url("S__18006040.jpg") center/cover no-repeat;
+}
+/* 讓圖片吃滿整個視窗寬 */
+.ph-banner img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.banner .container{
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* ========= 👤 關於區塊 ========= */
@@ -112,8 +129,8 @@ body{
   box-shadow:var(--shadow);
 }
 .card + .card{ margin-top:18px }
-.card-title{ padding:14px 18px; font-weight:800 }
-.card-body{ padding:0 18px 16px; color:var(--ink-2) }
+.card-title{ padding:14px 18px 14px 18px; font-weight:800;}
+.card-body{ padding:0 18px 16px; color:var(--ink-2); }
 
 /* ========= 🖌️ 作品區（Tab + 照片展示） ========= */
 .works .tabbar{
@@ -177,13 +194,14 @@ body{
 .dots .active{ background:#222 }
 
 /* ========= 🔁 流程卡片區 ========= */
-.flow-title{
-  background:#efefef;
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:12px 16px;
+.flow-title {
+  background:#e9e9e9;border:1px solid var(--line);
+  border-radius:12px;
+  padding:18px;
   width:max-content;
   margin:0 0 16px 24px;
+  font-weight:800;
+  font-family:inherit; /* 跟 body 一樣字體 */
 }
 .flow-grid{
   display:grid;
@@ -244,7 +262,7 @@ body{
 .contact-badge{
   background:#e9e9e9; border:1px solid var(--line);
   border-radius:12px;
-  padding:14px 18px;
+  padding:18px;
   width:max-content;
   margin:0 0 16px 24px;
   font-weight:800;
@@ -296,7 +314,13 @@ body{
   height: 560px;
   transition: opacity 0.5s ease;
 }
-
+.ph-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* ✅ 等比例裁切填滿容器 */
+  border-radius: inherit; /* 若外層有圓角可繼承 */
+  display: block; /* 移除 img 預設空隙 */
+}
 .panel {
   position: relative;
   min-height: 560px;
