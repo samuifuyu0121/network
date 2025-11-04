@@ -31,88 +31,69 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(sec => sec && observer.observe(sec));
 
-
-
 // ===== 3) 作品展示區：共用展示區 + 分類切換 + 淡入淡出 + 滑動 =====
-
-// 🎨 分類按鈕
 const tabBtns = document.querySelectorAll('.tab-btn');
+const panel = document.getElementById('panel-main');
+const main = panel.querySelector('.ph-main');
+const mainImage = main.querySelector('img');
+const thumbs = panel.querySelectorAll('.ph-sq');
+const leftArrow = panel.querySelector('.carousel-arrow.left');
+const rightArrow = panel.querySelector('.carousel-arrow.right');
 
-// 📸 各分類的圖片
+// 各分類圖片
 const galleryData = {
   illust: ["images/illust1.jpg", "images/illust2.jpg", "images/illust3.jpg"],
   prop: ["images/prop1.jpg", "images/prop2.jpg", "images/prop3.jpg"],
   design: ["images/design1.jpg", "images/design2.jpg", "images/design3.jpg"]
 };
 
-// 🎞️ 共用展示元件
-const panel = document.getElementById('panel-main');
-const main = panel.querySelector('.ph-main');
-const thumbs = panel.querySelectorAll('.ph-sq');
-const dots = panel.querySelectorAll('.dots span');
-
 // 狀態
 let currentCategory = "illust";
 let currentIndex = 0;
 
 // 初始化
-showImage();
+updateGallery();
 
-// ===== 點分類切換 =====
+// ===== Tab 分類切換 =====
 tabBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     const category = btn.dataset.target;
     if (category === currentCategory) return;
 
-    // 切換按鈕外觀
     tabBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
-    // 更新分類與索引
     currentCategory = category;
     currentIndex = 0;
-
-    // 顯示第一張圖
-    showImage();
+    updateGallery();
   });
 });
 
-// ===== 顯示當前圖片 =====
-function showImage() {
+// ===== 左右箭頭 =====
+leftArrow.addEventListener('click', prevImage);
+rightArrow.addEventListener('click', nextImage);
+
+// ===== 更新畫面函式 =====
+function updateGallery() {
   const images = galleryData[currentCategory];
 
   // 淡入淡出主圖
-  main.style.transition = "opacity 0.5s ease";
   main.style.opacity = 0;
-
   setTimeout(() => {
-    main.style.background = `url("${images[currentIndex]}") center/cover no-repeat`;
+    mainImage.src = images[currentIndex];
     main.style.opacity = 1;
   }, 250);
 
-  // 顯示縮圖
+  // 更新縮圖
   thumbs.forEach((t, i) => {
     t.style.background = `url("${images[i % images.length]}") center/cover no-repeat`;
-  });
-
-  // 更新 dots
-  dots.forEach((d, i) => {
-    d.classList.toggle('active', i === currentIndex);
   });
 
   // 啟用滑動
   enableSwipe(main);
 }
 
-// ===== 左右箭頭 =====
-document.querySelectorAll('.carousel-arrow').forEach(arrow => {
-  arrow.addEventListener('click', () => {
-    if (arrow.classList.contains('left')) prevImage();
-    else nextImage();
-  });
-});
-
-// ===== 手機滑動換圖 =====
+// ===== 滑動換圖（手機） =====
 function enableSwipe(element) {
   let startX = 0;
   let isTouching = false;
@@ -126,33 +107,29 @@ function enableSwipe(element) {
     if (!isTouching) return;
     const deltaX = e.touches[0].clientX - startX;
     if (Math.abs(deltaX) > 60) {
-      if (deltaX < 0) nextImage(); // 左滑
-      else prevImage();            // 右滑
+      if (deltaX < 0) nextImage();
+      else prevImage();
       isTouching = false;
     }
   });
 
-  element.addEventListener('touchend', () => {
-    isTouching = false;
-  });
+  element.addEventListener('touchend', () => { isTouching = false; });
 }
 
 // ===== 上一張 / 下一張 =====
 function nextImage() {
   const images = galleryData[currentCategory];
   currentIndex = (currentIndex + 1) % images.length;
-  showImage();
+  updateGallery();
 }
 
 function prevImage() {
   const images = galleryData[currentCategory];
   currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage();
+  updateGallery();
 }
 
-
-
-// ===== 4) Q&A：手風琴（不變暗） =====
+// ===== 4) Q&A 手風琴 =====
 const qaItems = document.querySelectorAll('.qa-item');
 qaItems.forEach(item => {
   const q = item.querySelector('.qa-q');
@@ -169,26 +146,15 @@ document.addEventListener('keydown', (e) => {
     qaItems.forEach(i => i.classList.remove('open'));
   }
 });
-// ===== 0) 點品牌回到最上面 =====
+
+// ===== 0) 點品牌回到最上方 =====
 const brand = document.querySelector('.brand');
 if (brand) {
-  // 滑順回頂端
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  brand.addEventListener('click', (e) => {
-    e.preventDefault();
-    scrollToTop();
-  });
-
-  // 鍵盤可達性（Enter / Space）
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  brand.addEventListener('click', (e) => { e.preventDefault(); scrollToTop(); });
   brand.setAttribute('role', 'button');
   brand.setAttribute('tabindex', '0');
   brand.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      scrollToTop();
-    }
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToTop(); }
   });
 }

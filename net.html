@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>個人作品展示</title>
-
   <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
 </head>
@@ -41,56 +40,51 @@
         <article class="card">
           <h3 class="card-title">郭姵誼/齊悦/簡廷伃</h3>
           <div class="card-body">
-            <p>擅長處理日式插圖/正比/文字設計
-            </p>
+            <p>擅長處理日式插圖/正比/文字設計</p>
           </div>
         </article>
         <article class="card">
           <h3 class="card-title">價目表</h3>
           <div class="card-body">
-            <p>插圖:800up/正比:3000up/文字設計:1500up</p>
-            <p>商用價格*3倍/急件*2倍up(視情況調整)</p>
+            <p>插圖:800up / 正比:3000up / 文字設計:1500up</p>
+            <p>商用價格*3倍 / 急件*2倍up(視情況調整)</p>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ░░ 作品展示（共用展示區版本） ░░ -->
-<section class="works section" id="works">
-  <div class="container">
-    <h2 class="section-heading">作品展示</h2>
+  <!-- ░░ 作品展示 ░░ -->
+  <section class="works section" id="works">
+    <div class="container">
+      <h2 class="section-heading">作品展示</h2>
 
-    <!-- 三個按鈕 -->
-    <div class="tabbar">
-      <button class="tab-btn active" data-target="illust">插圖</button>
-      <button class="tab-btn" data-target="prop">正比</button>
-      <button class="tab-btn" data-target="design">設計</button>
-    </div>
-
-    <!-- 共用展示區（只留這一個 panel） -->
-    <div class="panel show" id="panel-main">
-      <div class="thumbs">
-        <figure class="ph ph-sq"></figure>
-        <figure class="ph ph-sq"></figure>
+      <!-- 三個按鈕 -->
+      <div class="tabbar">
+        <button class="tab-btn active" data-target="illust">插圖</button>
+        <button class="tab-btn" data-target="prop">正比</button>
+        <button class="tab-btn" data-target="design">設計</button>
       </div>
 
-      <!-- 主圖容器：按鈕圖 -->
-      <figure class="ph ph-main">
-          <img src="S__18006040.jpg" alt="pic" />
-      </figure>
+      <!-- 共用展示區 -->
+      <div class="panel show" id="panel-main">
+        <div class="thumbs">
+          <figure class="ph ph-sq"></figure>
+          <figure class="ph ph-sq"></figure>
+          <figure class="ph ph-sq"></figure>
+        </div>
 
-      <button class="carousel-arrow left">‹</button>
-      <button class="carousel-arrow right">›</button>
+        <!-- 主圖容器：按鈕圖 -->
+        <figure class="ph ph-main">
+            <img src="images/illust1.jpg" alt="pic" id="main-image" />
+        </figure>
 
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
+        <!-- 左右箭頭 -->
+        <button class="carousel-arrow left" id="prev">‹</button>
+        <button class="carousel-arrow right" id="next">›</button>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- ░░ 流程 ░░ -->
   <section id="flow" class="section flow">
@@ -142,7 +136,7 @@
 
   <!-- ░░ 黑色頁尾 ░░ -->
   <footer class="site-footer">
-    <div class="container">© 2025 版權所有</div>
+    <div class="container">113AC2005 / 113AC2024 / 113AC2031</div>
   </footer>
 
 </body>
