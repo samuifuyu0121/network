@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>賽事現場報到系統</title>
+  <style>
+    body { font-family: "微軟正黑體", sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f9; }
+    .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; max-width: 90%; }
+    input { padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; outline: none; margin: 5px 0; width: 250px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007BFF; color: white; border: none; border-radius: 5px; margin-top: 10px; }
+    button:hover { background-color: #0056b3; }
+    #result { margin-top: 20px; font-weight: bold; font-size: 18px; }
+    
+    /* 手環區域預設隱藏 */
+    #wristbandSection { display: none; margin-top: 20px; padding-top: 20px; border-top: 1px dashed #ccc; }
+    .success-btn { background-color: #28a745; }
+    .success-btn:hover { background-color: #218838; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>賽事現場報到系統</h2>
+    
+    <div>
+      <p>請輸入參賽者 姓名、電話 或 編號：</p>
+      <input type="text" id="searchInput" placeholder="例如：王小明 / 0912345678">
+      <br>
+      <button onclick="checkRegistration()">查詢名單</button>
+    </div>
+
+    <div id="result"></div>
+
+    <div id="wristbandSection">
+      <p id="wristbandHint">確認為參賽者！請輸入發放的手環編號：</p>
+      <input type="text" id="wristbandInput" placeholder="例如：A001">
+      <br>
+      <button class="success-btn" onclick="submitWristband()">確認發放並寫入系統</button>
+    </div>
+  </div>
+
+  <script>
+    // 你的正式版 GAS 網址
+    const gasUrl = 'https://script.google.com/macros/s/AKfycbxmzVFQKeO8wIETMpEP0b5mljrGJQwrG4zA9EqQzYyt-oegTh9cn7KkXwg9TUZsUmJA/exec'; 
+    let currentQuery = ""; // 記住剛剛查詢成功的字串(可能是電話或編號)
+
+    function checkRegistration() {
+      const queryValue = document.getElementById('searchInput').value.trim();
+      const resultDiv = document.getElementById('result');
+      const wristbandSection = document.getElementById('wristbandSection');
+      
+      if (!queryValue) {
+        resultDiv.innerHTML = "請先輸入查詢資料喔！";
+        resultDiv.style.color = "red";
+        return;
+      }
+
+      resultDiv.innerHTML = "資料查詢中，請稍候...";
+      resultDiv.style.color = "#666";
+      wristbandSection.style.display = "none"; 
+
+      // 傳送 query 給 GAS
+      fetch(`${gasUrl}?action=check&query=${queryValue}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.found) {
+            // 這裡顯示 data.name (GAS 查到的姓名)，這樣工作人員才能核對本人
+            resultDiv.innerHTML = `✅ 查詢成功！參賽者「${data.name}」在名單內。`;
+            resultDiv.style.color = "green";
+            
+            currentQuery = queryValue; // 記住搜尋條件，等一下寫入要用
+            wristbandSection.style.display = "block";
+            document.getElementById('wristbandInput').value = ""; 
+            document.getElementById('wristbandInput').focus();
+          } else {
+            resultDiv.innerHTML = `❌ 找不到「${queryValue}」的相關資料。`;
+            resultDiv.style.color = "red";
+          }
+        })
+        .catch(error => {
+          resultDiv.innerHTML = "系統發生錯誤，請稍後再試。";
+          console.error('Error:', error);
+        });
+    }
+
+    function submitWristband() {
+      const wristband = document.getElementById('wristbandInput').value.trim();
+      const resultDiv = document.getElementById('result');
+      const wristbandSection = document.getElementById('wristbandSection');
+
+      if (!wristband) {
+        alert("請輸入手環編號！");
+        return;
+      }
+
+      resultDiv.innerHTML = "手環編號寫入中，請稍候...";
+      resultDiv.style.color = "#666";
+      
+      // 帶著 query 和 手環編號 去更新
+      fetch(`${gasUrl}?action=update&query=${currentQuery}&wristband=${wristband}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            resultDiv.innerHTML = `🎉 報到完成！手環編號 (${wristband}) 已寫入系統。`;
+            resultDiv.style.color = "blue";
+            wristbandSection.style.display = "none"; 
+            document.getElementById('searchInput').value = ""; // 清空查詢框
+          } else {
+            resultDiv.innerHTML = "❌ 寫入失敗，請確認資料後重試。";
+            resultDiv.style.color = "red";
+          }
+        })
+        .catch(error => {
+          resultDiv.innerHTML = "寫入時發生錯誤，請稍後再試。";
+          console.error('Error:', error);
+        });
+    }
+  </script>
+
+</body>
+</html>
